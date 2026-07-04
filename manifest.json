@@ -1,0 +1,17 @@
+{
+  "name": "MONEYSCRIPT Studio",
+  "short_name": "MONEYSCRIPT",
+  "description": "Automated faceless finance video system",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0a0a0f",
+  "theme_color": "#0a0a0f",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect width='192' height='192' rx='24' fill='%230a0a0f'/><text x='96' y='130' font-family='Arial Black' font-size='100' font-weight='900' fill='%23c8f542' text-anchor='middle'>M</text></svg>",
+      "sizes": "192x192",
+      "type": "image/svg+xml"
+    }
+  ]
+}
