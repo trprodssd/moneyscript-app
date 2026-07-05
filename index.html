@@ -18,169 +18,121 @@
   --red:#f54242;--red-bg:rgba(245,66,66,.1);
   --gold:#f5c842;--gold-bg:rgba(245,200,66,.1);
   --blue:#4287f5;--blue-bg:rgba(66,135,245,.1);
-  --pink:#f542a8;--pink-bg:rgba(245,66,168,.1);
   --text:#e2e2f0;--text2:#9090b0;--text3:#55556a;
-  --nav-h:72px;--safe-b:env(safe-area-inset-bottom,0px);
+  --nav-h:68px;
 }
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:15px}
 button{font-family:inherit;cursor:pointer;border:none;outline:none}
-input,textarea,select{font-family:inherit;outline:none}
+input,textarea,select{font-family:inherit;outline:none;background:none;color:var(--text)}
 ::-webkit-scrollbar{display:none}
-
-/* ── LAYOUT ── */
 .app{display:flex;flex-direction:column;height:100vh;height:100dvh}
-.topbar{flex-shrink:0;display:flex;align-items:center;justify-content:space-between;padding:14px 18px calc(14px + env(safe-area-inset-top,0px)) 18px;padding-top:calc(14px + env(safe-area-inset-top,0px));background:var(--s1);border-bottom:1px solid var(--border)}
-.logo{font-weight:900;font-size:19px;letter-spacing:2px;color:var(--lime)}
+.topbar{flex-shrink:0;display:flex;align-items:center;justify-content:space-between;padding:12px 18px;padding-top:calc(12px + env(safe-area-inset-top,0px));background:var(--s1);border-bottom:1px solid var(--border)}
+.logo{font-weight:900;font-size:18px;letter-spacing:2px;color:var(--lime)}
 .logo-sub{font-size:10px;color:var(--text3);letter-spacing:1px;margin-top:1px}
-.srv-dot{width:8px;height:8px;border-radius:50%;background:var(--red);display:inline-block;margin-right:6px;transition:background .3s}
+.srv-row{display:flex;align-items:center;gap:6px}
+.srv-dot{width:7px;height:7px;border-radius:50%;background:var(--red);transition:background .3s}
 .srv-dot.on{background:var(--lime);animation:pulse 2s infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
 .srv-label{font-size:11px;color:var(--text2)}
-
 .pages{flex:1;overflow:hidden;position:relative}
-.page{position:absolute;inset:0;overflow-y:auto;padding:16px 16px calc(var(--nav-h) + 16px + var(--safe-b));display:none;animation:fadeUp .2s ease}
-.page.active{display:block}
-@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
-
-.nav{flex-shrink:0;display:flex;background:var(--s1);border-top:1px solid var(--border);padding-bottom:var(--safe-b)}
-.nav-btn{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;padding:10px 4px;color:var(--text3);font-size:10px;letter-spacing:.5px;text-transform:uppercase;font-weight:600;background:transparent;min-height:var(--nav-h)}
+.page{position:absolute;inset:0;overflow-y:auto;padding:14px 14px calc(var(--nav-h) + 14px + env(safe-area-inset-bottom,0px));display:none}
+.page.active{display:block;animation:fi .2s ease}
+@keyframes fi{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.nav{flex-shrink:0;display:flex;background:var(--s1);border-top:1px solid var(--border);padding-bottom:env(safe-area-inset-bottom,0px)}
+.nav-btn{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;padding:10px 4px;color:var(--text3);font-size:9px;letter-spacing:.5px;text-transform:uppercase;font-weight:700;background:transparent;min-height:var(--nav-h)}
 .nav-btn.active{color:var(--lime)}
 .nav-icon{font-size:20px;line-height:1}
-
-/* ── CARDS ── */
-.card{background:var(--s1);border:1px solid var(--border);border-radius:14px;padding:16px;margin-bottom:12px}
-.card-title{font-size:11px;color:var(--text2);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:12px;font-weight:600}
-
-/* ── STATS ROW ── */
-.stats-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}
-.stat-box{background:var(--s1);border:1px solid var(--border);border-radius:12px;padding:14px 16px}
-.stat-label{font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:1px;margin-bottom:5px}
-.stat-value{font-size:28px;font-weight:900;line-height:1}
-
-/* ── BADGE ── */
-.badge{display:inline-flex;align-items:center;font-size:10px;font-weight:700;padding:3px 9px;border-radius:20px;letter-spacing:.5px}
+.card{background:var(--s1);border:1px solid var(--border);border-radius:12px;padding:14px;margin-bottom:10px}
+.card-title{font-size:10px;color:var(--text2);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px;font-weight:700}
+.stats-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px}
+.stat-box{background:var(--s1);border:1px solid var(--border);border-radius:10px;padding:12px}
+.stat-label{font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px}
+.stat-value{font-size:26px;font-weight:900;line-height:1}
+.badge{display:inline-flex;align-items:center;font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px;letter-spacing:.5px}
 .bl{background:var(--lime-bg);color:var(--lime);border:1px solid rgba(200,245,66,.25)}
 .bg2{background:var(--gold-bg);color:var(--gold);border:1px solid rgba(245,200,66,.25)}
 .br{background:var(--red-bg);color:var(--red);border:1px solid rgba(245,66,66,.25)}
 .bt{background:var(--teal-bg);color:var(--teal);border:1px solid rgba(66,245,200,.25)}
 .bb{background:var(--blue-bg);color:var(--blue);border:1px solid rgba(66,135,245,.25)}
-.bp{background:var(--pink-bg);color:var(--pink);border:1px solid rgba(245,66,168,.25)}
-
-/* ── VIDEO LIST ── */
-.video-item{background:var(--s1);border:1px solid var(--border);border-radius:12px;padding:14px;margin-bottom:10px;cursor:pointer;transition:border-color .15s}
-.video-item:hover,.video-item.active{border-color:var(--lime)}
-.vi-meta{display:flex;align-items:center;gap:8px;margin-bottom:6px}
-.vi-topic{font-size:14px;font-weight:600;margin-bottom:5px;line-height:1.3}
+.video-item{background:var(--s1);border:1px solid var(--border);border-radius:10px;padding:12px;margin-bottom:8px;cursor:pointer;transition:border-color .15s;active:scale(.99)}
+.video-item.active{border-color:var(--lime)}
+.vi-meta{display:flex;align-items:center;gap:7px;margin-bottom:5px;flex-wrap:wrap}
+.vi-topic{font-size:13px;font-weight:700;margin-bottom:4px;line-height:1.3}
 .vi-hook{font-size:12px;color:var(--text2);line-height:1.4;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
-
-/* ── VIDEO PLAYER ── */
-.player-wrap{position:relative;width:100%;max-width:240px;margin:0 auto 16px;background:var(--s2);border-radius:14px;overflow:hidden;aspect-ratio:9/16;display:flex;align-items:center;justify-content:center}
+.player-wrap{position:relative;width:100%;max-width:210px;margin:0 auto 14px;background:var(--s2);border-radius:12px;overflow:hidden;aspect-ratio:9/16;display:flex;align-items:center;justify-content:center}
 .player-wrap video{width:100%;height:100%;object-fit:cover}
-.player-ph{display:flex;flex-direction:column;align-items:center;gap:8px;color:var(--text3);font-size:13px}
-.player-ph .pi{font-size:40px}
-
-/* ── SCRIPT VIEWER ── */
-.script-section{margin-bottom:12px;padding:14px;border-radius:12px;border-left:3px solid}
-.s-hook{background:rgba(245,66,168,.06);border-color:var(--pink)}
+.player-ph{display:flex;flex-direction:column;align-items:center;gap:6px;color:var(--text3);font-size:12px;text-align:center;padding:20px}
+.script-section{margin-bottom:10px;padding:12px;border-radius:10px;border-left:3px solid}
+.s-hook{background:rgba(245,66,168,.06);border-color:#f542a8}
 .s-content{background:rgba(66,245,200,.06);border-color:var(--teal)}
 .s-cta{background:rgba(245,200,66,.06);border-color:var(--gold)}
-.s-label{font-size:9px;letter-spacing:2px;text-transform:uppercase;font-weight:700;margin-bottom:7px}
-.s-hook .s-label{color:var(--pink)}.s-content .s-label{color:var(--teal)}.s-cta .s-label{color:var(--gold)}
-.s-text{font-size:14px;line-height:1.6}
-.s-edit{width:100%;background:var(--s2);border:1px solid var(--border);border-radius:8px;padding:10px;color:var(--text);font-size:13px;line-height:1.6;resize:none;margin-top:6px}
-.s-edit:focus{border-color:var(--lime)}
-
-/* ── DECISION BUTTONS ── */
-.decision-row{display:flex;gap:10px;margin-top:16px;position:sticky;bottom:0;padding:12px 0;background:var(--bg)}
-.btn-approve{flex:1;padding:16px;border-radius:12px;background:var(--lime);color:#080810;font-weight:900;font-size:16px;display:flex;align-items:center;justify-content:center;gap:6px}
+.s-label{font-size:9px;letter-spacing:2px;text-transform:uppercase;font-weight:700;margin-bottom:6px}
+.s-hook .s-label{color:#f542a8}.s-content .s-label{color:var(--teal)}.s-cta .s-label{color:var(--gold)}
+.s-text{font-size:13px;line-height:1.6}
+.decision-row{display:flex;gap:10px;margin-top:14px;position:sticky;bottom:0;padding:10px 0;background:var(--bg)}
+.btn-approve{flex:1;padding:15px;border-radius:10px;background:var(--lime);color:#080810;font-weight:900;font-size:15px;display:flex;align-items:center;justify-content:center;gap:5px}
 .btn-approve:active{transform:scale(.97)}
-.btn-reject{flex:1;padding:16px;border-radius:12px;background:var(--red-bg);color:var(--red);font-weight:700;font-size:15px;border:1px solid rgba(245,66,66,.3);display:flex;align-items:center;justify-content:center;gap:6px}
+.btn-reject{flex:1;padding:15px;border-radius:10px;background:var(--red-bg);color:var(--red);font-weight:700;font-size:14px;border:1px solid rgba(245,66,66,.3);display:flex;align-items:center;justify-content:center;gap:5px}
 .btn-reject:active{transform:scale(.97)}
-
-/* ── REGEN BUTTONS ── */
-.regen-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px}
-.regen-btn{padding:12px;background:var(--s2);border:1px solid var(--border);border-radius:10px;text-align:left;color:var(--text);font-size:12px;display:flex;flex-direction:column;gap:3px}
+.regen-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:10px}
+.regen-btn{padding:11px;background:var(--s2);border:1px solid var(--border);border-radius:9px;text-align:left;color:var(--text);display:flex;flex-direction:column;gap:2px}
 .regen-btn:active{background:var(--s3)}
-.regen-icon{font-size:18px}
-.regen-label{font-weight:700;font-size:13px}
-.regen-desc{color:var(--text2);font-size:11px}
-
-/* ── STUDIO ── */
-.form-row{margin-bottom:12px}
-.form-label{font-size:11px;color:var(--text2);letter-spacing:1px;text-transform:uppercase;font-weight:600;margin-bottom:5px;display:block}
-.inp{width:100%;background:var(--s2);border:1px solid var(--border);border-radius:10px;padding:12px 14px;color:var(--text);font-size:14px}
+.regen-icon{font-size:16px}
+.regen-label{font-weight:700;font-size:12px}
+.regen-desc{color:var(--text2);font-size:10px}
+.form-row{margin-bottom:10px}
+.form-label{font-size:10px;color:var(--text2);letter-spacing:1px;text-transform:uppercase;font-weight:700;margin-bottom:5px;display:block}
+.inp{width:100%;background:var(--s2);border:1px solid var(--border);border-radius:9px;padding:11px 13px;color:var(--text);font-size:14px}
 .inp:focus{border-color:var(--lime)}
-.sel{width:100%;background:var(--s2);border:1px solid var(--border);border-radius:10px;padding:12px 14px;color:var(--text);font-size:14px;appearance:none}
-.btn-primary{width:100%;padding:15px;border-radius:12px;background:var(--lime);color:#080810;font-weight:900;font-size:16px;margin-top:4px}
+.sel{width:100%;background:var(--s2);border:1px solid var(--border);border-radius:9px;padding:11px 13px;color:var(--text);font-size:14px;appearance:none}
+.btn-primary{width:100%;padding:14px;border-radius:10px;background:var(--lime);color:#080810;font-weight:900;font-size:15px;margin-top:4px}
 .btn-primary:active{transform:scale(.98);background:#d4f55a}
-.btn-secondary{width:100%;padding:13px;border-radius:12px;background:var(--s2);color:var(--text);font-weight:600;font-size:14px;border:1px solid var(--border);margin-top:8px}
+.btn-secondary{width:100%;padding:12px;border-radius:10px;background:var(--s2);color:var(--text);font-weight:600;font-size:13px;border:1px solid var(--border);margin-top:7px}
 .btn-secondary:active{background:var(--s3)}
-
-/* ── SETTINGS ── */
-.settings-item{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;background:var(--s1);border:1px solid var(--border);border-radius:12px;margin-bottom:8px}
-.si-label{font-size:14px;font-weight:600}
-.si-sub{font-size:11px;color:var(--text2);margin-top:2px}
-.si-val{font-size:12px;color:var(--lime);font-weight:600;text-align:right;max-width:140px;word-break:break-all}
-
-/* ── PIPELINE ITEMS ── */
-.pl-item{display:flex;align-items:center;gap:12px;padding:12px 14px;background:var(--s1);border:1px solid var(--border);border-radius:10px;margin-bottom:6px}
-.pl-icon{font-size:20px;flex-shrink:0}
+.pl-item{display:flex;align-items:center;gap:10px;padding:10px 12px;background:var(--s2);border-radius:9px;margin-bottom:5px}
+.pl-icon{font-size:18px;flex-shrink:0}
 .pl-name{font-size:13px;font-weight:600;flex:1}
-
-/* ── MODAL ── */
-.modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.75);display:none;align-items:flex-end;justify-content:center;z-index:9000;backdrop-filter:blur(4px)}
+.modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.8);display:none;align-items:flex-end;justify-content:center;z-index:9000;backdrop-filter:blur(4px)}
 .modal-bg.open{display:flex}
-.modal{background:var(--s1);border-radius:20px 20px 0 0;padding:24px 20px calc(24px + var(--safe-b));width:100%;max-width:500px}
-.modal-title{font-size:17px;font-weight:700;margin-bottom:5px}
-.modal-sub{font-size:13px;color:var(--text2);margin-bottom:18px}
-.reason-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px}
-.reason-card{padding:14px;background:var(--s2);border:1px solid var(--border);border-radius:12px;text-align:center;cursor:pointer}
+.modal{background:var(--s1);border-radius:18px 18px 0 0;padding:22px 18px calc(22px + env(safe-area-inset-bottom,0px));width:100%;max-width:500px}
+.modal-title{font-size:16px;font-weight:800;margin-bottom:4px}
+.modal-sub{font-size:12px;color:var(--text2);margin-bottom:16px}
+.reason-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:12px}
+.reason-card{padding:12px;background:var(--s2);border:1px solid var(--border);border-radius:10px;text-align:center;cursor:pointer}
 .reason-card.sel{border-color:var(--red);background:var(--red-bg)}
-.reason-card .ri{font-size:22px;margin-bottom:4px}
-.reason-card .rl{font-size:12px;font-weight:600}
-.modal-actions{display:flex;gap:8px;margin-top:14px}
-.btn-cancel{flex:1;padding:13px;border-radius:10px;background:var(--s2);color:var(--text);font-weight:600;font-size:14px;border:1px solid var(--border)}
-.btn-confirm-red{flex:1;padding:13px;border-radius:10px;background:var(--red-bg);color:var(--red);font-weight:700;font-size:14px;border:1px solid rgba(245,66,66,.3)}
-
-/* ── TOAST ── */
-.toast-wrap{position:fixed;top:calc(env(safe-area-inset-top,0px) + 70px);left:50%;transform:translateX(-50%);z-index:9999;pointer-events:none;width:90%;max-width:380px}
-.toast{padding:12px 18px;border-radius:12px;font-size:14px;font-weight:600;text-align:center;transform:translateY(-80px);opacity:0;transition:all .3s cubic-bezier(.34,1.56,.64,1);margin-bottom:8px}
+.reason-card .ri{font-size:20px;margin-bottom:3px}
+.reason-card .rl{font-size:11px;font-weight:700}
+.modal-actions{display:flex;gap:8px;margin-top:12px}
+.btn-cancel{flex:1;padding:12px;border-radius:9px;background:var(--s2);color:var(--text);font-weight:600;font-size:13px;border:1px solid var(--border)}
+.btn-confirm-red{flex:1;padding:12px;border-radius:9px;background:var(--red-bg);color:var(--red);font-weight:700;font-size:13px;border:1px solid rgba(245,66,66,.3)}
+.toast-wrap{position:fixed;top:calc(env(safe-area-inset-top,0px) + 66px);left:50%;transform:translateX(-50%);z-index:9999;pointer-events:none;width:92%;max-width:360px}
+.toast{padding:11px 16px;border-radius:10px;font-size:13px;font-weight:700;text-align:center;transform:translateY(-80px);opacity:0;transition:all .3s cubic-bezier(.34,1.56,.64,1);margin-bottom:6px}
 .toast.show{transform:translateY(0);opacity:1}
 .toast.success{background:var(--lime);color:#080810}
 .toast.error{background:var(--red);color:#fff}
 .toast.info{background:var(--s3);color:var(--text);border:1px solid var(--border2)}
-
-/* ── EMPTY STATE ── */
-.empty{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:50px 20px;color:var(--text3);text-align:center}
-.empty-icon{font-size:48px;margin-bottom:12px;opacity:.4}
-.empty-text{font-size:14px}
-
-/* ── LOADING ── */
-.spin{display:inline-block;width:14px;height:14px;border:2px solid rgba(0,0,0,.2);border-top-color:currentColor;border-radius:50%;animation:sp .6s linear infinite}
+.empty{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 20px;color:var(--text3);text-align:center}
+.empty-icon{font-size:40px;margin-bottom:10px;opacity:.4}
+.empty-text{font-size:13px;line-height:1.6}
+.spin{display:inline-block;width:13px;height:13px;border:2px solid rgba(0,0,0,.2);border-top-color:currentColor;border-radius:50%;animation:sp .6s linear infinite}
 @keyframes sp{to{transform:rotate(360deg)}}
-.skeleton{background:linear-gradient(90deg,var(--s2) 25%,var(--s3) 50%,var(--s2) 75%);background-size:200%;animation:sk 1.5s infinite}
-@keyframes sk{0%{background-position:200% 0}100%{background-position:-200% 0}}
-.skel-line{height:14px;border-radius:7px;margin-bottom:8px}
 </style>
 </head>
 <body>
-
 <div class="app">
 
-  <!-- TOPBAR -->
   <div class="topbar">
     <div>
       <div class="logo">MONEYSCRIPT</div>
       <div class="logo-sub">Content Studio</div>
     </div>
-    <div style="display:flex;align-items:center">
+    <div class="srv-row">
       <span class="srv-dot" id="srv-dot"></span>
       <span class="srv-label" id="srv-label">Connecting...</span>
     </div>
   </div>
 
-  <!-- PAGES -->
   <div class="pages">
 
     <!-- HOME -->
@@ -191,51 +143,54 @@ input,textarea,select{font-family:inherit;outline:none}
         <div class="stat-box"><div class="stat-label">Approved</div><div class="stat-value" id="s-approved" style="color:var(--teal)">—</div></div>
         <div class="stat-box"><div class="stat-label">Total</div><div class="stat-value" id="s-total" style="color:var(--text)">—</div></div>
       </div>
-
       <div class="card">
         <div class="card-title">Pending Review</div>
-        <div id="home-pending-list"><div class="skel-line skeleton" style="width:100%"></div><div class="skel-line skeleton" style="width:80%"></div></div>
+        <div id="home-pending-list"><div style="color:var(--text3);font-size:13px">Loading...</div></div>
       </div>
-
       <div class="card">
-        <div class="card-title">Pipeline</div>
-        <div id="pipeline-list">
-          <div class="pl-item"><span class="pl-icon">🤖</span><span class="pl-name">Groq API</span><span class="badge bl">Connected</span></div>
-          <div class="pl-item"><span class="pl-icon">🎬</span><span class="pl-name">Shotstack</span><span class="badge bb" id="shotstack-status">Check key</span></div>
-          <div class="pl-item"><span class="pl-icon">▶️</span><span class="pl-name">YouTube EN</span><span class="badge bb">@MoneyScriptt</span></div>
-          <div class="pl-item"><span class="pl-icon">📸</span><span class="pl-name">Instagram EN</span><span class="badge bb">@money.scriptt</span></div>
-          <div class="pl-item"><span class="pl-icon">⏰</span><span class="pl-name">Generate</span><span class="badge bt">9:00 PM daily</span></div>
-          <div class="pl-item"><span class="pl-icon">📤</span><span class="pl-name">Post</span><span class="badge bl">9:00 AM daily</span></div>
-        </div>
+        <div class="card-title">Pipeline Status</div>
+        <div class="pl-item"><span class="pl-icon">🤖</span><span class="pl-name">Groq API</span><span class="badge bl">Connected</span></div>
+        <div class="pl-item"><span class="pl-icon">🎬</span><span class="pl-name">Shotstack</span><span class="badge bb">Sandbox</span></div>
+        <div class="pl-item"><span class="pl-icon">▶️</span><span class="pl-name">YouTube EN</span><span class="badge bb">@MoneyScriptt</span></div>
+        <div class="pl-item"><span class="pl-icon">⏰</span><span class="pl-name">Generate</span><span class="badge bt">9:00 PM daily</span></div>
+        <div class="pl-item"><span class="pl-icon">📤</span><span class="pl-name">Post</span><span class="badge bl">9:00 AM daily</span></div>
       </div>
     </div>
 
     <!-- REVIEW -->
     <div class="page" id="page-review">
       <div id="review-list-view">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">
+          <span style="font-size:12px;color:var(--text2)">Tap any video to review</span>
+          <div class="srv-row" style="gap:5px">
+            <select class="sel" id="review-filter" style="width:auto;padding:6px 10px;font-size:11px" onchange="loadVideoList()">
+              <option value="">All</option>
+              <option value="pending_review">Pending</option>
+              <option value="approved">Approved</option>
+              <option value="posted">Posted</option>
+              <option value="rejected">Rejected</option>
+            </select>
+          </div>
+        </div>
         <div id="video-list"></div>
       </div>
       <div id="review-player-view" style="display:none">
-        <button onclick="backToList()" style="background:var(--s2);border:1px solid var(--border);border-radius:10px;padding:8px 14px;color:var(--text);font-size:13px;margin-bottom:12px">← Back</button>
-
+        <button onclick="backToList()" style="background:var(--s2);border:1px solid var(--border);border-radius:9px;padding:7px 13px;color:var(--text);font-size:12px;margin-bottom:10px">← Back to list</button>
         <div class="player-wrap" id="player-wrap">
-          <div class="player-ph"><div class="pi">⏳</div><span>Loading video...</span></div>
+          <div class="player-ph"><div style="font-size:32px">⏳</div><span>Loading video...</span></div>
         </div>
-
         <div id="review-script"></div>
-
-        <div style="margin-bottom:12px">
-          <div class="card-title">Regenerate Section</div>
+        <div style="margin-bottom:10px">
+          <div class="card-title" style="margin-bottom:8px">Regenerate Section</div>
           <div class="regen-grid">
-            <button class="regen-btn" onclick="regen('hook')"><span class="regen-icon">🔥</span><span class="regen-label">New Hooks</span><span class="regen-desc">3 fresh options</span></button>
+            <button class="regen-btn" onclick="regen('hook')"><span class="regen-icon">🔥</span><span class="regen-label">New Hook</span><span class="regen-desc">3 fresh options</span></button>
             <button class="regen-btn" onclick="regen('script')"><span class="regen-icon">✏️</span><span class="regen-label">Rewrite Script</span><span class="regen-desc">Keep hook & CTA</span></button>
-            <button class="regen-btn" onclick="regen('video')"><span class="regen-icon">🎬</span><span class="regen-label">New Video</span><span class="regen-desc">Re-render all</span></button>
-            <button class="regen-btn" onclick="regen('all')"><span class="regen-icon">🔄</span><span class="regen-label">Regenerate All</span><span class="regen-desc">Full restart</span></button>
+            <button class="regen-btn" onclick="regen('video')"><span class="regen-icon">🎬</span><span class="regen-label">New Video</span><span class="regen-desc">Full re-render</span></button>
+            <button class="regen-btn" onclick="regen('all')"><span class="regen-icon">🔄</span><span class="regen-label">All New</span><span class="regen-desc">Full restart</span></button>
           </div>
         </div>
-
         <div class="decision-row">
-          <button class="btn-approve" onclick="approveVideo()">✅ Approve</button>
+          <button class="btn-approve" id="approve-btn" onclick="approveVideo()">✅ Approve</button>
           <button class="btn-reject" onclick="openRejectModal()">🗑 Reject</button>
         </div>
       </div>
@@ -243,8 +198,8 @@ input,textarea,select{font-family:inherit;outline:none}
 
     <!-- GENERATE -->
     <div class="page" id="page-generate">
-      <div class="card" style="margin-bottom:12px">
-        <div class="card-title">Generate Now</div>
+      <div class="card" style="margin-bottom:10px">
+        <div class="card-title">Generate Video Now</div>
         <div class="form-row">
           <label class="form-label">Channel</label>
           <select class="sel" id="gen-lang">
@@ -254,84 +209,72 @@ input,textarea,select{font-family:inherit;outline:none}
         </div>
         <div class="form-row">
           <label class="form-label">Topic</label>
-          <input class="inp" id="gen-topic" placeholder="e.g. How to build credit from zero" />
+          <input class="inp" id="gen-topic" placeholder="e.g. How to build credit from zero in 6 months"/>
         </div>
         <button class="btn-primary" id="gen-btn" onclick="generateNow()">✦ Generate Video</button>
-        <button class="btn-secondary" onclick="generateFromBank()">📋 Use Next Topic from Bank</button>
+        <button class="btn-secondary" onclick="generateFromBank()">📋 Use Next Topic From Bank</button>
       </div>
-
       <div class="card" id="gen-output" style="display:none">
-        <div class="card-title">Generated Script</div>
-        <div id="gen-script-content"></div>
+        <div class="card-title">Result</div>
+        <div id="gen-result"></div>
       </div>
     </div>
 
     <!-- SETTINGS -->
     <div class="page" id="page-settings">
-      <div class="card" style="margin-bottom:12px">
+      <div class="card" style="margin-bottom:10px">
         <div class="card-title">Backend Connection</div>
         <div class="form-row">
-          <label class="form-label">Apps Script URL</label>
-          <input class="inp" id="api-url" placeholder="https://script.google.com/macros/s/YOUR_ID/exec" />
+          <label class="form-label">Apps Script Web App URL</label>
+          <input class="inp" id="api-url" placeholder="https://script.google.com/macros/s/.../exec" type="url"/>
         </div>
         <div class="form-row">
           <label class="form-label">App Secret</label>
-          <input class="inp" id="api-secret" type="password" placeholder="moneyscript2026" />
+          <input class="inp" id="api-secret" type="password" placeholder="moneyscript2026"/>
         </div>
-        <button class="btn-primary" onclick="saveSettings()">Save & Test Connection</button>
+        <button class="btn-primary" onclick="saveSettings()">💾 Save & Test Connection</button>
       </div>
-
-      <div class="card" style="margin-bottom:12px">
+      <div class="card" style="margin-bottom:10px">
         <div class="card-title">Quick Actions</div>
-        <button class="btn-secondary" onclick="setupTriggers()" style="margin-bottom:8px">⚙️ Setup Daily Triggers (run once)</button>
-        <button class="btn-secondary" onclick="loadStats()" style="margin-bottom:8px">↻ Refresh Stats</button>
-        <button class="btn-secondary" onclick="clearAll()">🗑 Clear Local Data</button>
+        <button class="btn-secondary" onclick="setupTriggers()" style="margin-bottom:7px">⚙️ Setup Daily Triggers (run once)</button>
+        <button class="btn-secondary" onclick="manualRefresh()" style="margin-bottom:7px">↻ Refresh Everything</button>
+        <button class="btn-secondary" onclick="clearAll()">🗑 Clear Saved Settings</button>
       </div>
-
       <div class="card">
         <div class="card-title">About</div>
-        <div style="font-size:13px;color:var(--text2);line-height:1.7">
-          <p><b style="color:var(--lime)">MONEYSCRIPT</b> — Automated faceless finance video system</p>
-          <p style="margin-top:6px">Backend: Google Apps Script + Groq + Shotstack</p>
-          <p>Platforms: YouTube Shorts + Instagram Reels</p>
-          <p>Channels: English + Arabic</p>
-          <p style="margin-top:8px;color:var(--lime)">App Version 2.0 — Phone Edition</p>
+        <div style="font-size:12px;color:var(--text2);line-height:1.8">
+          <div><b style="color:var(--lime)">MONEYSCRIPT</b> Phone Edition v2.1</div>
+          <div>Backend: Google Apps Script</div>
+          <div>AI: Groq (Llama 3.3 70B)</div>
+          <div>Video: Shotstack API</div>
+          <div>Platforms: YouTube + Instagram</div>
+          <div style="margin-top:6px;color:var(--lime)">No laptop. No VPS. 100% phone.</div>
         </div>
       </div>
     </div>
 
-  </div><!-- /pages -->
-
-  <!-- BOTTOM NAV -->
-  <div class="nav">
-    <button class="nav-btn active" id="nav-home" onclick="goPage('home')">
-      <span class="nav-icon">⌂</span><span>Home</span>
-    </button>
-    <button class="nav-btn" id="nav-review" onclick="goPage('review')">
-      <span class="nav-icon">▶</span><span>Review</span>
-    </button>
-    <button class="nav-btn" id="nav-generate" onclick="goPage('generate')">
-      <span class="nav-icon">✦</span><span>Generate</span>
-    </button>
-    <button class="nav-btn" id="nav-settings" onclick="goPage('settings')">
-      <span class="nav-icon">⚙</span><span>Settings</span>
-    </button>
   </div>
 
-</div><!-- /app -->
+  <div class="nav">
+    <button class="nav-btn active" id="nav-home" onclick="goPage('home')"><span class="nav-icon">⌂</span><span>Home</span></button>
+    <button class="nav-btn" id="nav-review" onclick="goPage('review')"><span class="nav-icon">▶</span><span>Review</span></button>
+    <button class="nav-btn" id="nav-generate" onclick="goPage('generate')"><span class="nav-icon">✦</span><span>Generate</span></button>
+    <button class="nav-btn" id="nav-settings" onclick="goPage('settings')"><span class="nav-icon">⚙</span><span>Settings</span></button>
+  </div>
+</div>
 
 <!-- REJECT MODAL -->
 <div class="modal-bg" id="reject-modal">
   <div class="modal">
     <div class="modal-title">Why are you rejecting?</div>
-    <div class="modal-sub">This triggers auto-regeneration with your feedback.</div>
+    <div class="modal-sub">The AI will use this to regenerate a better version.</div>
     <div class="reason-grid">
-      <div class="reason-card" onclick="selReason(this,'Bad script — wrong tone')"><div class="ri">✏️</div><div class="rl">Bad Script</div></div>
-      <div class="reason-card" onclick="selReason(this,'Voiceover unnatural or too fast')"><div class="ri">🎙</div><div class="rl">Bad Voice</div></div>
-      <div class="reason-card" onclick="selReason(this,'Hook not strong enough')"><div class="ri">🔥</div><div class="rl">Weak Hook</div></div>
-      <div class="reason-card" onclick="selReason(this,'Content unclear or inaccurate')"><div class="ri">📝</div><div class="rl">Bad Content</div></div>
+      <div class="reason-card" onclick="selReason(this,'Bad script — wrong tone or content')"><div class="ri">✏️</div><div class="rl">Bad Script</div></div>
+      <div class="reason-card" onclick="selReason(this,'Voiceover sounds unnatural or too fast')"><div class="ri">🎙</div><div class="rl">Bad Voice</div></div>
+      <div class="reason-card" onclick="selReason(this,'Hook is not strong enough to stop scrolling')"><div class="ri">🔥</div><div class="rl">Weak Hook</div></div>
+      <div class="reason-card" onclick="selReason(this,'Content is unclear or inaccurate')"><div class="ri">📝</div><div class="rl">Bad Content</div></div>
     </div>
-    <input class="inp" id="reject-notes" placeholder="Extra notes for the AI (optional)..." style="margin-bottom:12px">
+    <input class="inp" id="reject-notes" placeholder="Extra notes for the AI (optional)..." style="margin-bottom:10px">
     <div class="modal-actions">
       <button class="btn-cancel" onclick="closeModal()">Cancel</button>
       <button class="btn-confirm-red" onclick="confirmReject()">Reject & Regen</button>
@@ -350,8 +293,8 @@ const S = {
   videos: [],
   selectedVideo: null,
   rejectReason: '',
-  apiUrl: localStorage.getItem('ms_api_url') || '',
-  apiSecret: localStorage.getItem('ms_secret') || 'moneyscript2026',
+  apiUrl:    localStorage.getItem('ms_api_url') || '',
+  apiSecret: localStorage.getItem('ms_secret')  || 'moneyscript2026',
 };
 
 // ═══════════════════════════════════════════════════════
@@ -363,32 +306,29 @@ function goPage(p) {
   document.querySelectorAll('.nav-btn').forEach(x => x.classList.remove('active'));
   document.getElementById('page-' + p).classList.add('active');
   document.getElementById('nav-' + p).classList.add('active');
-  if (p === 'home')    loadHome();
-  if (p === 'review')  loadVideoList();
+  if (p === 'home')     loadHome();
+  if (p === 'review')   loadVideoList();
   if (p === 'settings') loadSettingsPage();
 }
 
 // ═══════════════════════════════════════════════════════
-//  API CALLS
+//  API — ALL REQUESTS USE GET TO AVOID CORS PREFLIGHT
+//  The secret and action are passed as URL params.
+//  This is intentional — the APP_SECRET protects access.
 // ═══════════════════════════════════════════════════════
-async function apiGet(action, extra = {}) {
-  if (!S.apiUrl) { toast('Set API URL in Settings first', 'error'); throw new Error('No API URL'); }
+async function api(params) {
+  if (!S.apiUrl) {
+    toast('Go to Settings and enter your Apps Script URL', 'error');
+    throw new Error('No API URL configured');
+  }
   const url = new URL(S.apiUrl);
-  url.searchParams.set('action', action);
   url.searchParams.set('secret', S.apiSecret);
-  Object.keys(extra).forEach(k => url.searchParams.set(k, extra[k]));
-  const r = await fetch(url.toString());
-  return r.json();
-}
-
-async function apiPost(body) {
-  if (!S.apiUrl) { toast('Set API URL in Settings first', 'error'); throw new Error('No API URL'); }
-  const r = await fetch(S.apiUrl, {
-    method: 'POST',
-    body: JSON.stringify({ ...body, secret: S.apiSecret }),
-    headers: { 'Content-Type': 'application/json' }
+  Object.entries(params).forEach(([k,v]) => {
+    if (v !== undefined && v !== null) url.searchParams.set(k, v);
   });
-  return r.json();
+  const res = await fetch(url.toString(), { method: 'GET' });
+  if (!res.ok) throw new Error('HTTP ' + res.status);
+  return res.json();
 }
 
 // ═══════════════════════════════════════════════════════
@@ -396,7 +336,7 @@ async function apiPost(body) {
 // ═══════════════════════════════════════════════════════
 async function checkServer() {
   try {
-    const d = await apiGet('health');
+    const d = await api({ action: 'health' });
     if (d.ok) {
       document.getElementById('srv-dot').classList.add('on');
       document.getElementById('srv-label').textContent = 'Online';
@@ -404,13 +344,13 @@ async function checkServer() {
     }
   } catch {}
   document.getElementById('srv-dot').classList.remove('on');
-  document.getElementById('srv-label').textContent = 'Offline';
+  document.getElementById('srv-label').textContent = !S.apiUrl ? 'Setup needed' : 'Offline';
   return false;
 }
 
 async function loadStats() {
   try {
-    const s = await apiGet('stats');
+    const s = await api({ action: 'stats' });
     document.getElementById('s-pending').textContent  = s.pending_review ?? '—';
     document.getElementById('s-posted').textContent   = s.posted ?? '—';
     document.getElementById('s-approved').textContent = s.approved ?? '—';
@@ -424,97 +364,91 @@ async function loadStats() {
 // ═══════════════════════════════════════════════════════
 async function loadHome() {
   await checkServer();
-  const stats = await loadStats();
-
-  // Pending videos preview
+  await loadStats();
+  const container = document.getElementById('home-pending-list');
+  if (!S.apiUrl) {
+    container.innerHTML = '<div style="color:var(--gold);font-size:13px;line-height:1.6">👆 Go to <b>Settings</b> tab<br>and enter your Apps Script URL to connect.</div>';
+    return;
+  }
   try {
-    const { videos } = await apiGet('videos', { status: 'pending_review' });
-    const container = document.getElementById('home-pending-list');
-    if (!videos.length) {
-      container.innerHTML = '<div style="color:var(--text3);font-size:13px;text-align:center;padding:10px">No pending videos — will generate at 9PM</div>';
+    const { videos } = await api({ action: 'videos', status: 'pending_review' });
+    if (!videos?.length) {
+      container.innerHTML = '<div style="color:var(--text3);font-size:13px">No pending videos. System generates at 9PM daily.</div>';
       return;
     }
     container.innerHTML = videos.slice(0,3).map(v => `
-      <div style="display:flex;align-items:center;gap:10px;padding:10px;background:var(--s2);border-radius:10px;margin-bottom:6px;cursor:pointer" onclick="openVideoFromHome('${v.id}')">
+      <div onclick="openVideoFromHome('${v.id}')" style="display:flex;align-items:center;gap:9px;padding:9px;background:var(--s2);border-radius:9px;margin-bottom:6px;cursor:pointer">
         <span class="badge ${v.lang==='en'?'bb':'bg2'}">${v.lang.toUpperCase()}</span>
-        <span style="font-size:13px;font-weight:600;flex:1;overflow:hidden;white-space:nowrap;text-overflow:ellipsis">${v.topic||'Untitled'}</span>
-        <span style="font-size:18px">→</span>
+        <span style="font-size:12px;font-weight:600;flex:1;overflow:hidden;white-space:nowrap;text-overflow:ellipsis">${v.topic||'Untitled'}</span>
+        <span style="color:var(--lime);font-size:14px">→</span>
       </div>`).join('');
-  } catch {}
+  } catch(e) {
+    container.innerHTML = '<div style="color:var(--red);font-size:12px">Could not load. Check your connection in Settings.</div>';
+  }
 }
 
-function openVideoFromHome(id) {
-  goPage('review');
-  setTimeout(() => openVideo(id), 100);
-}
+function openVideoFromHome(id) { goPage('review'); setTimeout(()=>{ S.videos.length ? openVideo(id) : loadVideoList().then(()=>openVideo(id)); }, 150); }
 
 // ═══════════════════════════════════════════════════════
-//  REVIEW — VIDEO LIST
+//  REVIEW LIST
 // ═══════════════════════════════════════════════════════
 async function loadVideoList() {
   document.getElementById('review-list-view').style.display = 'block';
   document.getElementById('review-player-view').style.display = 'none';
-
   const container = document.getElementById('video-list');
-  container.innerHTML = '<div class="skel-line skeleton" style="width:100%;height:80px;border-radius:12px;margin-bottom:10px"></div>'.repeat(3);
-
+  container.innerHTML = '<div style="color:var(--text2);font-size:13px;padding:20px;text-align:center">Loading...</div>';
   try {
-    const { videos } = await apiGet('videos');
-    S.videos = videos;
-    if (!videos.length) {
-      container.innerHTML = '<div class="empty"><div class="empty-icon">📭</div><div class="empty-text">No videos yet.<br>Videos generate at 9PM daily.</div></div>';
+    const statusFilter = document.getElementById('review-filter')?.value || '';
+    const params = { action: 'videos' };
+    if (statusFilter) params.status = statusFilter;
+    const { videos } = await api(params);
+    S.videos = videos || [];
+    if (!S.videos.length) {
+      container.innerHTML = '<div class="empty"><div class="empty-icon">📭</div><div class="empty-text">No videos yet.<br>Generate one or wait for 9PM auto-generation.</div></div>';
       return;
     }
-    container.innerHTML = videos.map(v => `
+    container.innerHTML = S.videos.map(v => `
       <div class="video-item" onclick="openVideo('${v.id}')">
         <div class="vi-meta">
           <span class="badge ${v.lang==='en'?'bb':'bg2'}">${v.lang.toUpperCase()}</span>
-          <span class="badge ${statusBadge(v.status)}">${v.status?.replace('_',' ')}</span>
-          <span style="margin-left:auto;font-size:11px;color:var(--text3)">${fmtDate(v.created_at)}</span>
+          <span class="badge ${sBadge(v.status)}">${(v.status||'').replace('_',' ')}</span>
+          <span style="margin-left:auto;font-size:10px;color:var(--text3)">${fmtDate(v.created_at)}</span>
         </div>
         <div class="vi-topic">${v.topic||'Untitled'}</div>
         <div class="vi-hook">${v.hook||''}</div>
       </div>`).join('');
   } catch(e) {
-    container.innerHTML = '<div class="empty"><div class="empty-icon">⚠️</div><div class="empty-text">Could not load videos.<br>Check Settings.</div></div>';
+    container.innerHTML = '<div class="empty"><div class="empty-icon">⚠️</div><div class="empty-text">Cannot load videos.<br>Check Settings → test your connection.</div></div>';
   }
 }
 
 // ═══════════════════════════════════════════════════════
-//  REVIEW — VIDEO PLAYER
+//  VIDEO PLAYER
 // ═══════════════════════════════════════════════════════
 function openVideo(id) {
   S.selectedVideo = S.videos.find(v => v.id === id);
   if (!S.selectedVideo) return;
-
   document.getElementById('review-list-view').style.display = 'none';
   document.getElementById('review-player-view').style.display = 'block';
-
   const v = S.selectedVideo;
   const isAR = v.lang === 'ar';
+  const dir = isAR ? 'dir="rtl"' : '';
 
   // Player
   const pw = document.getElementById('player-wrap');
   if (v.render_url) {
-    pw.innerHTML = `<video controls playsinline src="${v.render_url}" style="width:100%;height:100%;object-fit:cover"></video>`;
+    pw.innerHTML = `<video controls playsinline preload="metadata" src="${v.render_url}"></video>`;
   } else if (v.status === 'rendering') {
-    pw.innerHTML = '<div class="player-ph"><div class="pi">⏳</div><span>Rendering in progress...<br>Check back in a few minutes.</span></div>';
+    pw.innerHTML = '<div class="player-ph"><div style="font-size:28px">⏳</div><span>Rendering in progress...<br>Check back in ~3 minutes.</span></div>';
   } else {
-    pw.innerHTML = '<div class="player-ph"><div class="pi">🎬</div><span>No video yet</span></div>';
+    pw.innerHTML = '<div class="player-ph"><div style="font-size:28px">🎬</div><span>No video file yet.</span></div>';
   }
 
   // Script
-  const dir = isAR ? 'dir="rtl"' : '';
   document.getElementById('review-script').innerHTML = `
     <div class="script-section s-hook">
       <div class="s-label">🔥 Hook (0–3s)</div>
       <div class="s-text" ${dir}>${v.hook||'—'}</div>
-      ${v.hook_variations ? `<div style="margin-top:10px;display:flex;flex-direction:column;gap:6px">
-        ${(v.hook_variations.split?.(',')||[v.hook_variations]).slice(0,2).map((h,i)=>`
-          <div style="padding:10px;background:var(--s2);border-radius:8px;font-size:12px;color:var(--text2);cursor:pointer" onclick="pickHook(this,'${h.trim().replace(/'/g,"\\'")}')">
-            <span style="color:var(--pink);font-size:10px;font-weight:700;margin-right:6px">ALT ${i+1}</span>${h.trim()}
-          </div>`).join('')}
-      </div>` : ''}
     </div>
     <div class="script-section s-content">
       <div class="s-label">📖 Content (3–41s)</div>
@@ -524,11 +458,11 @@ function openVideo(id) {
       <div class="s-label">🎯 CTA (41–45s)</div>
       <div class="s-text" ${dir}>${v.cta||'—'}</div>
     </div>
-    <div class="card" style="margin-top:12px">
-      <div class="card-title">SEO Package</div>
-      <div style="font-size:13px;font-weight:700;margin-bottom:6px" ${dir}>${v.title||'—'}</div>
-      <div style="font-size:12px;color:var(--text2);margin-bottom:10px" ${dir}>${v.description||'—'}</div>
-      <div style="display:flex;flex-wrap:wrap;gap:5px">
+    <div class="card" style="margin-top:10px">
+      <div class="card-title">SEO</div>
+      <div style="font-size:13px;font-weight:700;margin-bottom:5px" ${dir}>${v.title||'—'}</div>
+      <div style="font-size:11px;color:var(--text2);margin-bottom:8px" ${dir}>${v.description||'—'}</div>
+      <div style="display:flex;flex-wrap:wrap;gap:4px">
         ${(v.hashtags||'').split(',').filter(Boolean).map(h=>`<span class="badge bl">#${h.trim()}</span>`).join('')}
       </div>
     </div>`;
@@ -540,22 +474,16 @@ function backToList() {
   S.selectedVideo = null;
 }
 
-function pickHook(el, text) {
-  document.querySelectorAll('#review-script .s-text').forEach(t => {});
-  toast('Hook selected — approve to use it', 'info');
-}
-
 // ═══════════════════════════════════════════════════════
 //  APPROVE / REJECT
 // ═══════════════════════════════════════════════════════
 async function approveVideo() {
   if (!S.selectedVideo) return;
-  const btn = document.querySelector('.btn-approve');
+  const btn = document.getElementById('approve-btn');
   btn.innerHTML = '<span class="spin"></span>';
   try {
-    const d = await apiPost({ action: 'approve', id: S.selectedVideo.id });
-    toast(d.message || 'Approved!', 'success');
-    S.selectedVideo.status = 'approved';
+    const d = await api({ action: 'approve', id: S.selectedVideo.id });
+    toast(d.message || '✅ Approved! Posts at 9AM', 'success');
     setTimeout(() => backToList(), 1500);
   } catch(e) { toast('Error: ' + e.message, 'error'); }
   btn.innerHTML = '✅ Approve';
@@ -569,19 +497,19 @@ function openRejectModal() {
   document.getElementById('reject-modal').classList.add('open');
 }
 
-function selReason(el, reason) {
+function selReason(el, r) {
   document.querySelectorAll('.reason-card').forEach(c => c.classList.remove('sel'));
   el.classList.add('sel');
-  S.rejectReason = reason;
+  S.rejectReason = r;
 }
 
 async function confirmReject() {
   const notes = document.getElementById('reject-notes').value.trim();
-  const reason = notes || S.rejectReason || 'Not specified';
+  const reason = encodeURIComponent(notes || S.rejectReason || 'Not specified');
   closeModal();
   try {
-    const d = await apiPost({ action: 'reject', id: S.selectedVideo.id, reason });
-    toast(d.message || 'Rejected — regenerating', 'info');
+    const d = await api({ action: 'reject', id: S.selectedVideo.id, reason });
+    toast(d.message || '🔄 Rejected — regenerating now', 'info');
     setTimeout(() => backToList(), 1500);
   } catch(e) { toast('Error: ' + e.message, 'error'); }
 }
@@ -590,12 +518,8 @@ async function regen(section) {
   if (!S.selectedVideo) return;
   toast(`Regenerating ${section}...`, 'info');
   try {
-    await apiPost({
-      action: 'reject',
-      id: S.selectedVideo.id,
-      reason: `Please specifically improve: ${section}`
-    });
-    toast('Regenerating! Check back in ~3 minutes.', 'success');
+    await api({ action: 'reject', id: S.selectedVideo.id, reason: encodeURIComponent(`Please specifically improve: ${section}`) });
+    toast('New version generating — check back in 3 mins', 'success');
     setTimeout(() => backToList(), 2000);
   } catch(e) { toast('Error: ' + e.message, 'error'); }
 }
@@ -607,22 +531,20 @@ async function generateNow() {
   const topic = document.getElementById('gen-topic').value.trim();
   const lang  = document.getElementById('gen-lang').value;
   if (!topic) { toast('Enter a topic first', 'error'); return; }
-
   const btn = document.getElementById('gen-btn');
   btn.innerHTML = '<span class="spin"></span> Generating...';
   btn.disabled = true;
-
   try {
-    const d = await apiPost({ action: 'generate', lang, topic });
+    const d = await api({ action: 'generate', lang, topic: encodeURIComponent(topic) });
     document.getElementById('gen-output').style.display = 'block';
-    document.getElementById('gen-script-content').innerHTML = `
-      <div style="font-size:13px;color:var(--teal);margin-bottom:10px">✅ Generation started! Video will appear in Review tab in ~3 minutes.</div>
-      <div style="font-size:13px;color:var(--text2)">ID: ${d.id || '—'}</div>`;
+    document.getElementById('gen-result').innerHTML = `
+      <div style="color:var(--teal);font-size:13px;margin-bottom:8px">✅ Generation started!</div>
+      <div style="color:var(--text2);font-size:12px;line-height:1.7">Your video is being created on Google and Shotstack servers.<br><br>
+      Check the <b style="color:var(--text)">Review tab</b> in about 3 minutes.<br>
+      Video ID: <span style="color:var(--lime);font-family:monospace">${d.id||'—'}</span></div>`;
     toast('Video generation started!', 'success');
     document.getElementById('gen-topic').value = '';
-  } catch(e) {
-    toast('Error: ' + e.message, 'error');
-  }
+  } catch(e) { toast('Error: ' + e.message, 'error'); }
   btn.innerHTML = '✦ Generate Video';
   btn.disabled = false;
 }
@@ -631,78 +553,90 @@ async function generateFromBank() {
   const lang = document.getElementById('gen-lang').value;
   toast('Fetching next topic...', 'info');
   try {
-    const { topics } = await apiGet('topics');
-    const next = topics.find(t => t.lang === lang);
+    const { topics } = await api({ action: 'topics' });
+    const next = (topics || []).find(t => t.lang === lang);
     if (next) {
       document.getElementById('gen-topic').value = next.topic;
-      toast('Topic loaded — tap Generate to start', 'success');
+      toast('Topic loaded — tap Generate', 'success');
     } else {
       toast('No more topics in bank for ' + lang.toUpperCase(), 'info');
     }
-  } catch(e) { toast('Error: ' + e.message, 'error'); }
+  } catch(e) { toast('Error loading topics', 'error'); }
 }
 
 // ═══════════════════════════════════════════════════════
 //  SETTINGS
 // ═══════════════════════════════════════════════════════
 function loadSettingsPage() {
-  document.getElementById('api-url').value = S.apiUrl;
+  document.getElementById('api-url').value    = S.apiUrl;
   document.getElementById('api-secret').value = S.apiSecret;
 }
 
 async function saveSettings() {
-  const url = document.getElementById('api-url').value.trim();
+  const url    = document.getElementById('api-url').value.trim();
   const secret = document.getElementById('api-secret').value.trim();
-  if (!url) { toast('Enter the Apps Script URL', 'error'); return; }
-  S.apiUrl = url;
+  if (!url) { toast('Enter your Apps Script URL', 'error'); return; }
+  if (!url.includes('script.google.com')) { toast('URL should start with https://script.google.com/...', 'error'); return; }
+  S.apiUrl    = url;
   S.apiSecret = secret || 'moneyscript2026';
-  localStorage.setItem('ms_api_url', S.apiUrl);
-  localStorage.setItem('ms_secret', S.apiSecret);
-  toast('Saved. Testing connection...', 'info');
+  localStorage.setItem('ms_api_url',   S.apiUrl);
+  localStorage.setItem('ms_secret',    S.apiSecret);
+  toast('Saved! Testing connection...', 'info');
   const ok = await checkServer();
-  toast(ok ? '✅ Connected!' : '❌ Cannot connect — check the URL', ok ? 'success' : 'error');
+  if (ok) {
+    await loadStats();
+    toast('✅ Connected and working!', 'success');
+  } else {
+    toast('❌ Cannot connect. Check the URL is correct and ends with /exec', 'error');
+  }
 }
 
 async function setupTriggers() {
   toast('Setting up triggers...', 'info');
   try {
-    const d = await apiPost({ action: 'setup' });
-    toast(d.message || 'Triggers set!', 'success');
+    const d = await api({ action: 'setup' });
+    toast(d.message || '✅ Triggers set!', 'success');
   } catch(e) { toast('Error: ' + e.message, 'error'); }
 }
 
+async function manualRefresh() {
+  toast('Refreshing...', 'info');
+  await checkServer();
+  await loadStats();
+  toast('Refreshed!', 'success');
+}
+
 function clearAll() {
-  if (!confirm('Clear all local settings?')) return;
+  if (!confirm('Clear all saved settings? You will need to re-enter your URL.')) return;
   localStorage.clear();
-  toast('Cleared. Reload the page.', 'info');
+  S.apiUrl = ''; S.apiSecret = 'moneyscript2026';
+  document.getElementById('api-url').value = '';
+  toast('Cleared. Enter your URL again.', 'info');
+  checkServer();
 }
 
 // ═══════════════════════════════════════════════════════
-//  UTILITIES
+//  UTILS
 // ═══════════════════════════════════════════════════════
-function statusBadge(s) {
-  return {pending_review:'bg2',approved:'bl',posted:'bt',rejected:'br',rendering:'bb',render_failed:'br'}[s]||'bb';
+function sBadge(s) {
+  const m = {pending_review:'bg2',approved:'bl',posted:'bt',rejected:'br',rendering:'bb',render_failed:'br'};
+  return m[s] || 'bb';
 }
-
 function fmtDate(iso) {
-  if (!iso) return '—';
-  const d = new Date(iso);
-  return d.toLocaleDateString('en-US', { month:'short', day:'numeric', hour:'2-digit', minute:'2-digit' });
+  if (!iso) return '';
+  try { return new Date(iso).toLocaleDateString('en-US',{month:'short',day:'numeric',hour:'2-digit',minute:'2-digit'}); }
+  catch { return ''; }
 }
-
-function toast(msg, type = 'info') {
+function toast(msg, type='info') {
   const w = document.getElementById('toast-wrap');
   const el = document.createElement('div');
   el.className = `toast ${type}`;
   el.textContent = msg;
   w.appendChild(el);
-  setTimeout(() => el.classList.add('show'), 10);
-  setTimeout(() => { el.classList.remove('show'); setTimeout(() => el.remove(), 400); }, 3000);
+  setTimeout(()=>el.classList.add('show'),10);
+  setTimeout(()=>{el.classList.remove('show');setTimeout(()=>el.remove(),400);},3500);
 }
-
-function closeModal() {
-  document.getElementById('reject-modal').classList.remove('open');
-}
+function closeModal() { document.getElementById('reject-modal').classList.remove('open'); }
 
 // ═══════════════════════════════════════════════════════
 //  BOOT
@@ -715,27 +649,12 @@ async function boot() {
   } else {
     document.getElementById('srv-label').textContent = 'Setup needed';
     document.getElementById('home-pending-list').innerHTML =
-      '<div style="color:var(--gold);font-size:13px;text-align:center;padding:10px">Go to Settings → enter your Apps Script URL to connect</div>';
+      '<div style="color:var(--gold);font-size:13px;line-height:1.6">Tap <b>Settings ⚙</b> below and enter your Apps Script URL to get started.</div>';
   }
   setInterval(checkServer, 30000);
-  setInterval(() => { if (S.page === 'home') loadStats(); }, 60000);
+  setInterval(()=>{ if(S.page==='home') loadStats(); }, 60000);
 }
-
 boot();
-</script>
-
-<!-- PWA MANIFEST INLINE -->
-<script>
-// Register service worker for offline capability
-if ('serviceWorker' in navigator) {
-  const sw = `
-    const CACHE = 'ms-v1';
-    self.addEventListener('install', e => e.waitUntil(caches.open(CACHE).then(c => c.add('/'))));
-    self.addEventListener('fetch', e => e.respondWith(caches.match(e.request).then(r => r || fetch(e.request).catch(() => caches.match('/')))));
-  `;
-  const blob = new Blob([sw], {type:'application/javascript'});
-  navigator.serviceWorker.register(URL.createObjectURL(blob)).catch(()=>{});
-}
 </script>
 </body>
 </html>
